@@ -1,7 +1,5 @@
 package de.exxcellent.challenge;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.util.ArrayList;
 
 /**
@@ -15,46 +13,14 @@ import java.util.ArrayList;
  */
 public class Utils {
 	
-	/**
-	 * Method for importing external .CSV files 
-	 * @param path - file location
-	 * @return - Matrix corresponding to the CSV file
-	 */
-	public static ArrayList<ArrayList<String>> importCsv(String path) {
-        ArrayList<ArrayList<String>> table = new ArrayList<>();
-
-        String row = "";
-        BufferedReader csvReader;
-        
-		try {
-			csvReader = new BufferedReader(new FileReader(path));
-	        while ((row = csvReader.readLine()) != null) {
-	        	// row data placeholder
-	            ArrayList<String> data_row = new ArrayList<>();
-	            
-	            // create a row of data
-	            for(String row_entry : row.split(",")) {
-	            	data_row.add(row_entry);
-	            }
-	            
-	            // append row to table
-	            table.add(data_row);
-	        }
-	        csvReader.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
-
-        return table;
-	}
+	
 	
 	/**
 	 * Method for finding the indexes of rows that have minimal spread between column values
 	 * @param table - List of shape {N x 2} for spread computation
 	 * @return - a list of indexes that correspond to minimal spread rows
 	 */
-	public static ArrayList<Integer> computeSpread(ArrayList<ArrayList<Double>> table) {
+	public static ArrayList<Integer> findMinimumSpread(ArrayList<ArrayList<Double>> table) {
 		
 		if(table.get(0).size()!= 2) {
 			System.out.println("Spread table should be of shape { N x 2 }");

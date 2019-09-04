@@ -21,7 +21,7 @@ public final class App {
         // import file from .csv table
     	String treeStructure = "/src/main/resources/de/exxcellent/challenge/";
         String path = System.getProperty("user.dir") + treeStructure + fileName;
-        ArrayList<ArrayList<String>> table = Utils.importCsv(path);
+        ArrayList<ArrayList<String>> table = ImportFiles.importCSV(path);
         
         // pre-process the table
         if(args[0].toString().equals("--football")){
@@ -32,7 +32,7 @@ public final class App {
         	ArrayList<ArrayList<Double>> footballTable = Utils.extractDoubleColumns(table, footballColumns);
         	
         	// compute the team indexes with smallest Goal Difference
-        	ArrayList<Integer> team_indexes = Utils.computeSpread(footballTable);
+        	ArrayList<Integer> team_indexes = Utils.findMinimumSpread(footballTable);
         	
         	// print teams with minimum spread
         	System.out.println("Teams with minimum goal spread are:");
@@ -49,7 +49,7 @@ public final class App {
         	ArrayList<ArrayList<Double>> weatherTable = Utils.extractDoubleColumns(table, weatherColumns);
           	
         	// compute the team indexes with smallest Goal Difference
-        	ArrayList<Integer> day_indexes = Utils.computeSpread(weatherTable);
+        	ArrayList<Integer> day_indexes = Utils.findMinimumSpread(weatherTable);
         	
         	// print teams with minimum spread
         	System.out.println("Days with minimum temperature spread are:");
