@@ -30,24 +30,28 @@ public class Utils {
 		ArrayList<Integer> minIndexes = new ArrayList<>();
 		double minSpread = Double.MAX_VALUE ;
 		
-		/* find minimum spread */
+		/* find elements with minimum spread */
 		for(int columnCnt = 0; columnCnt < table.size(); columnCnt ++) {
 			ArrayList<Double> row = table.get(columnCnt);
+
+			// continue if no chance for improvenment
+			if(Math.abs(row.get(0) - row.get(1)) > minSpread){
+				continue;
+			}
 			
+			// if equal to the current minimum => add to the list
+			if (Math.abs(row.get(0) - row.get(1)) == minSpread) {
+				minIndexes.add(columnCnt+1);
+			}
+
+			// if smaller than curent minimum  => new minimum
 			if (Math.abs(row.get(0) - row.get(1)) < minSpread) {
 				minSpread = Math.abs(row.get(0) - row.get(1));
+				minIndexes = new ArrayList<>();
+				minIndexes.add(columnCnt+1);
 			}	
 		}
 		
-		/* find entries that match minimum spread */
-		for(int columnCnt = 0; columnCnt < table.size(); columnCnt ++) {
-			ArrayList<Double> row = table.get(columnCnt);
-			
-			if (Math.abs(row.get(0) - row.get(1)) == minSpread) {
-				minIndexes.add(columnCnt+1);
-			}	
-		}	
-
 		return minIndexes;
 	}
 

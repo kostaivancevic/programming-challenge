@@ -25,8 +25,8 @@ public class AppTest {
 
     @Test
     public void runFootball() {
-    	App.main("--football", "football.csv");
-        //App.main("--football", "football_multi_solution.csv"); // this is a test for shared-minimum problem
+    	//App.main("--football", "football.csv");
+        App.main("--football", "football_multi_solution.csv"); // this is a test for shared-minimum problem
     }
     
     @Test
